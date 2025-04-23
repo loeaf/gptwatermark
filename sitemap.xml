@@ -7,7 +7,8 @@
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://gptmark.loeaf.com/ko/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://gptmark.loeaf.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://gptmark.loeaf.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://gptmark.loeaf.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://gptmark.loeaf.com/hi/"/>
   </url>
   <url>
     <loc>https://gptmark.loeaf.com/en/</loc>
@@ -16,15 +17,27 @@
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://gptmark.loeaf.com/ko/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://gptmark.loeaf.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://gptmark.loeaf.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://gptmark.loeaf.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://gptmark.loeaf.com/hi/"/>
   </url>
   <url>
-    <loc>https://gptmark.loeaf.com/ja/</loc>
+    <loc>https://gptmark.loeaf.com/zh/</loc>
     <lastmod>2025-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://gptmark.loeaf.com/ko/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://gptmark.loeaf.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://gptmark.loeaf.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://gptmark.loeaf.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://gptmark.loeaf.com/hi/"/>
+  </url>
+  <url>
+    <loc>https://gptmark.loeaf.com/hi/</loc>
+    <lastmod>2025-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gptmark.loeaf.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gptmark.loeaf.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://gptmark.loeaf.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://gptmark.loeaf.com/hi/"/>
   </url>
 </urlset>

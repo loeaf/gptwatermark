@@ -1,58 +1,59 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPT워터마크제거 - 모든 숨겨진 특수 문자 감지 및 제거</title>
+    <title>GPT水印移除器 - 检测并移除所有隐藏的特殊字符</title>
 
-    <!-- SEO 메타 태그 -->
-    <meta name="description" content="GPT로 생성된 텍스트에 포함된 모든 종류의 숨겨진 워터마크와 특수 문자를 감지하고 제거하는 무료 도구입니다.">
-    <meta name="keywords" content="GPT, ChatGPT, GPT-4, 워터마크, 워터마크 제거, 텍스트 정제, 특수문자 제거, AI 텍스트, 유니코드 감지">
-    <meta name="author" content="GPT워터마크제거">
+    <!-- SEO 元标签 -->
+    <meta name="description" content="免费工具，可检测并移除GPT生成文本中包含的各种隐藏水印和特殊字符。">
+    <meta name="keywords" content="GPT, ChatGPT, GPT-4, 水印, 水印移除, 文本净化, 特殊字符移除, AI文本, Unicode检测">
+    <meta name="author" content="GPT水印移除器">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://gptmark.loeaf.com/ko/">
-    <meta property="og:title" content="GPT워터마크제거 - 모든 숨겨진 특수 문자 감지 및 제거">
-    <meta property="og:description" content="ChatGPT와 GPT-4에서 생성된 텍스트의 숨겨진 워터마크와 특수 문자를 감지하고 제거하는 무료 도구">
+    <meta property="og:url" content="https://gptmark.loeaf.com/zh/">
+    <meta property="og:title" content="GPT水印移除器 - 检测并移除所有隐藏的特殊字符">
+    <meta property="og:description" content="免费工具，可检测并移除ChatGPT和GPT-4生成文本中的隐藏水印和特殊字符">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://gptmark.loeaf.com/ko/">
-    <meta property="twitter:title" content="GPT워터마크제거 - 모든 숨겨진 특수 문자 감지 및 제거">
-    <meta property="twitter:description" content="ChatGPT와 GPT-4에서 생성된 텍스트의 숨겨진 워터마크와 특수 문자를 감지하고 제거하는 무료 도구">
+    <meta property="twitter:url" content="https://gptmark.loeaf.com/zh/">
+    <meta property="twitter:title" content="GPT水印移除器 - 检测并移除所有隐藏的特殊字符">
+    <meta property="twitter:description" content="免费工具，可检测并移除ChatGPT和GPT-4生成文本中的隐藏水印和特殊字符">
 
-    <!-- 캐노니컬 태그 -->
-    <link rel="canonical" href="https://gptmark.loeaf.com/ko/">
+    <!-- 规范标签 -->
+    <link rel="canonical" href="https://gptmark.loeaf.com/zh/">
 
-    <!-- 언어 선택 링크 -->
+    <!-- 语言选择链接 -->
+    <link rel="alternate" hreflang="zh-CN" href="https://gptmark.loeaf.com/zh/">
     <link rel="alternate" hreflang="ko" href="https://gptmark.loeaf.com/ko/">
     <link rel="alternate" hreflang="en" href="https://gptmark.loeaf.com/en/">
     <link rel="alternate" hreflang="ja" href="https://gptmark.loeaf.com/ja/">
     <link rel="alternate" hreflang="x-default" href="https://gptmark.loeaf.com/">
 
-    <!-- RSS 링크 -->
-    <link rel="alternate" type="application/rss+xml" title="GPT워터마크제거 업데이트" href="/rss.xml">
+    <!-- RSS 链接 -->
+    <link rel="alternate" type="application/rss+xml" title="GPT水印移除器更新" href="/rss.xml">
 
-    <!-- 파비콘 -->
+    <!-- 网站图标 -->
     <link rel="icon" type="image/png" href="/static/favicon.png">
 
-    <!-- 구글 폰트: 한국어 지원 폰트 -->
+    <!-- Google 字体: 中文支持字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta name="google-site-verification" content="EIHfl9aW4xNEg3bBdYnU8DSELeP74YJAzUMUD_nLkeU" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RNEQV1D6K4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RNEQV1D6K4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-RNEQV1D6K4');
-</script>
-    <!-- 기본 스타일시트 -->
+      gtag('config', 'G-RNEQV1D6K4');
+    </script>
+    <!-- 基本样式表 -->
     <style>
         :root {
             --primary-color: #4285f4;
@@ -73,7 +74,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Noto Sans SC', sans-serif;
         }
 
         body {
@@ -269,7 +270,7 @@
             margin-bottom: 1rem;
         }
 
-        /* 자동 검출 모드 스위치 스타일 */
+        /* 自动检测模式开关样式 */
         .auto-detect-container {
             display: flex;
             align-items: center;
@@ -340,7 +341,7 @@
             margin-top: 0.25rem;
         }
 
-        /* 키보드 단축키 표시 */
+        /* 键盘快捷键显示 */
         .keyboard-shortcut {
             display: inline-block;
             padding: 2px 5px;
@@ -353,7 +354,7 @@
             font-family: monospace;
         }
 
-        /* 로딩 표시기 */
+        /* 加载指示器 */
         .loading-indicator {
             display: none;
             align-items: center;
@@ -382,68 +383,68 @@
 <body>
     <header>
         <div class="header-content">
-            <h1>GPT워터마크제거</h1>
+            <h1>GPT水印移除器</h1>
             <div class="language-selector">
-                <a href="/ko/" class="language-link active">한국어</a>
+                <a href="/zh/" class="language-link active">中文</a>
+                <a href="/ko/" class="language-link">한국어</a>
                 <a href="/en/" class="language-link">English</a>
-                <a href="/zh/" class="language-link">中國語</a>
                 <a href="/hi/" class="language-link">हिन्दी</a>
             </div>
         </div>
     </header>
 
     <div class="container">
-        <h1 class="title">GPT워터마크제거</h1>
-        <p class="subtitle">OpenAI의 GPT 모델 및 기타 AI에서 생성된 텍스트에 포함된 워터마크와 모든 종류의 숨겨진 특수 문자를 감지하고 제거합니다.</p>
+        <h1 class="title">GPT水印移除器</h1>
+        <p class="subtitle">检测并移除OpenAI的GPT模型及其他AI生成文本中包含的水印和各种隐藏的特殊字符。</p>
 
         <div class="info-box">
-            <p>📝 GPT는 생성한 텍스트에 '좁은 비분리 공백(U+202F)'과 같은 특수한 유니코드 문자를 워터마크로 삽입합니다. 이 도구는 모든 비정상적인 특수 문자를 감지하고 표시한 후 제거합니다.</p>
+            <p>📝 GPT在生成的文本中会插入特殊的Unicode字符作为水印，如"窄不间断空格(U+202F)"。此工具可以检测并显示所有异常的特殊字符，然后将其移除。</p>
         </div>
 
         <div class="app-container">
             <div class="input-section">
-                <h2 class="section-title">1. 텍스트 입력</h2>
+                <h2 class="section-title">1. 输入文本</h2>
 
-                <!-- 자동 검출 모드 스위치 추가 -->
+                <!-- 自动检测模式开关 -->
                 <div class="auto-detect-container">
                     <label class="switch">
                         <input type="checkbox" id="autoDetectToggle">
                         <span class="slider"></span>
                     </label>
                     <div>
-                        <div class="auto-detect-label">자동 검출 모드</div>
+                        <div class="auto-detect-label">自动检测模式</div>
                         <div class="auto-detect-description">
-                            입력 또는 붙여넣기 시 자동으로 워터마크를 검사합니다
+                            输入或粘贴时自动检查水印
                             <span class="keyboard-shortcut">Ctrl+V</span>
                         </div>
                     </div>
                     <div class="loading-indicator" id="loadingIndicator">
                         <div class="loading-spinner"></div>
-                        <span>검사 중...</span>
+                        <span>检查中...</span>
                     </div>
                 </div>
 
-                <textarea id="inputText" class="input-textarea" placeholder="여기에 GPT로 생성된 텍스트를 붙여넣으세요..."></textarea>
+                <textarea id="inputText" class="input-textarea" placeholder="在此粘贴GPT生成的文本..."></textarea>
                 <div class="buttons">
-                    <button id="clearBtn" class="btn btn-secondary">모두 지우기</button>
-                    <button id="checkBtn" class="btn btn-primary">워터마크 확인</button>
+                    <button id="clearBtn" class="btn btn-secondary">清空</button>
+                    <button id="checkBtn" class="btn btn-primary">检查水印</button>
                 </div>
             </div>
 
             <div class="output-section">
-                <h2 class="section-title">2. 워터마크 확인 결과</h2>
-                <div id="outputDisplay" class="output-display">워터마크가 표시될 부분입니다. '워터마크 확인' 버튼을 클릭하세요.</div>
+                <h2 class="section-title">2. 水印检查结果</h2>
+                <div id="outputDisplay" class="output-display">水印将显示在此处。点击"检查水印"按钮。</div>
                 <div class="buttons">
-                    <button id="copyBtn" class="btn btn-primary">복사하기</button>
+                    <button id="copyBtn" class="btn btn-primary">复制</button>
                 </div>
 
                 <div class="stats-container">
-                    <h3 class="output-title">감지 결과:</h3>
-                    <div id="stats">워터마크 없음</div>
+                    <h3 class="output-title">检测结果:</h3>
+                    <div id="stats">无水印</div>
                 </div>
 
                 <div class="watermarks-container">
-                    <h3 class="output-title">감지된 특수 문자 (워터마크):</h3>
+                    <h3 class="output-title">检测到的特殊字符（水印）:</h3>
                     <div id="watermarksList"></div>
                 </div>
             </div>
@@ -451,12 +452,12 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 GPT워터마크제거. 모든 권리 보유.</p>
-        <p>이 서비스는 텍스트 내 숨겨진 워터마크를 감지하고 제거하기 위한 교육 목적으로 제공됩니다.</p>
+        <p>&copy; 2025 GPT水印移除器. 保留所有权利.</p>
+        <p>此服务仅用于教育目的，帮助检测和移除文本中隐藏的水印。</p>
     </footer>
 
     <script>
-        // DOM 요소
+        // DOM 元素
         const inputText = document.getElementById('inputText');
         const outputDisplay = document.getElementById('outputDisplay');
         const checkBtn = document.getElementById('checkBtn');
@@ -467,46 +468,46 @@
         const autoDetectToggle = document.getElementById('autoDetectToggle');
         const loadingIndicator = document.getElementById('loadingIndicator');
 
-        // 자동 감지 모드 타이머
+        // 自动检测模式计时器
         let autoDetectTimer = null;
-        const AUTO_DETECT_DELAY = 500; // 입력 후 자동 감지 시작 전 지연 시간 (ms)
-        let previousInputValue = ''; // 이전 입력값 저장
+        const AUTO_DETECT_DELAY = 500; // 输入后自动检测开始前的延迟时间（毫秒）
+        let previousInputValue = ''; // 存储上一次输入值
 
-        // 자동 감지 모드 상태 로컬 스토리지에서 불러오기
+        // 从本地存储加载自动检测模式状态
         const savedAutoDetectState = localStorage.getItem('autoDetectMode');
         if (savedAutoDetectState === 'true') {
             autoDetectToggle.checked = true;
         }
 
-        // 자동 감지 모드 토글 이벤트
+        // 自动检测模式切换事件
         autoDetectToggle.addEventListener('change', function() {
-            // 설정 저장
+            // 保存设置
             localStorage.setItem('autoDetectMode', this.checked);
 
             if (this.checked && inputText.value.trim() !== '') {
-                // 토글 활성화 시 현재 텍스트 즉시 검사
+                // 切换激活时立即检查当前文本
                 detectWatermarks();
             }
         });
 
-        // 입력 이벤트 (자동 감지 모드)
+        // 输入事件（自动检测模式）
         inputText.addEventListener('input', function() {
             if (autoDetectToggle.checked) {
-                // 이전 타이머 취소
+                // 取消之前的计时器
                 if (autoDetectTimer) {
                     clearTimeout(autoDetectTimer);
                 }
 
-                // 현재 입력값이 이전 입력값과 크게 다른 경우에만 감지 진행
-                // (단일 키 입력이 아닌 붙여넣기 등의 대량 입력 감지)
+                // 只有当当前输入值与之前输入值有较大差异时才进行检测
+                // （检测大量输入，如粘贴，而非单键输入）
                 const currentValue = this.value;
                 const lengthDifference = Math.abs(currentValue.length - previousInputValue.length);
 
                 if (lengthDifference > 10) {
-                    // 로딩 표시기 표시
+                    // 显示加载指示器
                     loadingIndicator.style.display = 'flex';
 
-                    // 지연 후 감지 실행
+                    // 延迟后执行检测
                     autoDetectTimer = setTimeout(() => {
                         detectWatermarks();
                         previousInputValue = currentValue;
@@ -518,20 +519,22 @@
             }
         });
 
-        // 붙여넣기 이벤트 특별 처리 (자동 감지 모드)
+        // 粘贴事件特殊处理（自动检测模式）
         inputText.addEventListener('paste', function() {
             if (autoDetectToggle.checked) {
-                // 붙여넣기 작업이 완료된 후 감지 실행
+                // 粘贴操作完成后执行检测
                 loadingIndicator.style.display = 'flex';
 
                 setTimeout(() => {
                     detectWatermarks();
                     previousInputValue = this.value;
                     loadingIndicator.style.display = 'none';
-                }, 50); // 붙여넣기 이벤트 후 DOM 업데이트를 위한 짧은 지연
+                }, 50); // 粘贴事件后的短暂延迟，用于DOM更新
             }
         });
-function isNormalTextCharacter(char) {
+
+        // 检查字符是否为普通文本字符的函数
+        function isNormalTextCharacter(char) {
     const code = char.charCodeAt(0);
 
     // 이모지 검사
@@ -632,57 +635,89 @@ function isNormalTextCharacter(char) {
          0x2019, 0x00AB, 0x00BB, 0x2212, 0x00B7].includes(code)
     );
 }
-        // 이모지 확인 함수
+
+        // 检查表情符号函数
         function isEmoji(char) {
-            // 이모지 범위 확인
+            // 检查表情符号范围
             const code = char.codePointAt(0);
 
-            // 참고: 단일 유니코드 포인트 이모지 및 일부 이모지 블록 범위
+            // 注：单个Unicode码点表情符号及部分表情符号块范围
             return (
-                // 다양한 이모지 범위
-                (code >= 0x1F600 && code <= 0x1F64F) || // 이모티콘
-                (code >= 0x1F300 && code <= 0x1F5FF) || // 기타 기호 및 픽토그램
-                (code >= 0x1F680 && code <= 0x1F6FF) || // 교통 및 지도 기호
-                (code >= 0x1F700 && code <= 0x1F77F) || // 연금술 기호
-                (code >= 0x1F780 && code <= 0x1F7FF) || // 기하학적 모양
-                (code >= 0x1F800 && code <= 0x1F8FF) || // 추가 화살표
-                (code >= 0x1F900 && code <= 0x1F9FF) || // 추가 이모지
-                (code >= 0x1FA00 && code <= 0x1FA6F) || // 체스 기호
-                (code >= 0x1FA70 && code <= 0x1FAFF) || // 기타 기호
+                // 各种表情符号范围
+                (code >= 0x1F600 && code <= 0x1F64F) || // 表情符号
+                (code >= 0x1F300 && code <= 0x1F5FF) || // 其他符号和象形图
+                (code >= 0x1F680 && code <= 0x1F6FF) || // 交通和地图符号
+                (code >= 0x1F700 && code <= 0x1F77F) || // 炼金术符号
+                (code >= 0x1F780 && code <= 0x1F7FF) || // 几何形状
+                (code >= 0x1F800 && code <= 0x1F8FF) || // 补充箭头
+                (code >= 0x1F900 && code <= 0x1F9FF) || // 补充表情符号
+                (code >= 0x1FA00 && code <= 0x1FA6F) || // 国际象棋符号
+                (code >= 0x1FA70 && code <= 0x1FAFF) || // 其他符号
 
-                // 일반적인 문자지만 이모지로 사용되는 문자
-                (code >= 0x2600 && code <= 0x26FF) || // 기타 기호
-                (code >= 0x2700 && code <= 0x27BF) || // 장식용 문자
+      // 기본 라틴 문자 (ASCII)
+        (code >= 0x0020 && code <= 0x007E) ||
 
-                // 이모지 제어 문자
-                code === 0x200D ||  // 폭 없는 결합자 (ZWJ) - 이모지 결합에 사용됨
-                code === 0xFE0F ||  // 변형 선택자 16 (VS16) - 이모지 스타일에 사용됨
+        // 한국어 (한글)
+        (code >= 0xAC00 && code <= 0xD7A3) || // 한글 음절 (완성형)
+        (code >= 0x1100 && code <= 0x11FF) || // 한글 자모 (초성, 중성, 종성)
+        (code >= 0x3130 && code <= 0x318F) || // 한글 호환 자모
+        (code >= 0xA960 && code <= 0xA97F) || // 한글 확장 자모 A
+        (code >= 0xD7B0 && code <= 0xD7FF) || // 한글 확장 자모 B
 
-                // 국기 이모지 (1F1E6-1F1FF의 조합으로 구성)
+        // 일본어
+        (code >= 0x3040 && code <= 0x309F) || // 히라가나
+        (code >= 0x30A0 && code <= 0x30FF) || // 가타카나
+        (code >= 0x31F0 && code <= 0x31FF) || // 가타카나 확장
+        (code >= 0xFF65 && code <= 0xFF9F) || // 반각 가타카나
+
+        // 중국어 (및 일본 한자)
+        (code >= 0x4E00 && code <= 0x9FFF) || // CJK 통합 한자 (기본)
+        (code >= 0x3400 && code <= 0x4DBF) || // CJK 통합 한자 확장 A
+        (code >= 0x20000 && code <= 0x2A6DF) || // CJK 통합 한자 확장 B
+        (code >= 0x2A700 && code <= 0x2B73F) || // CJK 통합 한자 확장 C
+        (code >= 0x2B740 && code <= 0x2B81F) || // CJK 통합 한자 확장 D
+        (code >= 0x2B820 && code <= 0x2CEAF) || // CJK 통합 한자 확장 E
+        (code >= 0x2CEB0 && code <= 0x2EBEF) || // CJK 통합 한자 확장 F
+        (code >= 0xF900 && code <= 0xFAFF) || // CJK 호환 한자
+        (code >= 0x2F800 && code <= 0x2FA1F) || // CJK 호환 한자 보충
+
+        // 기타 CJK 관련 기호
+        (code >= 0x3000 && code <= 0x303F) || // CJK 기호 및 구두점
+        (code >= 0xFF00 && code <= 0xFFEF) || // 전각 문자
+
+                // 通常作为字符但用作表情符号的字符
+                (code >= 0x2600 && code <= 0x26FF) || // 其他符号
+                (code >= 0x2700 && code <= 0x27BF) || // 装饰性字符
+
+                // 表情符号控制字符
+                code === 0x200D ||  // 零宽连接符 (ZWJ) - 用于表情符号连接
+                code === 0xFE0F ||  // 变体选择符-16 (VS16) - 用于表情符号样式
+
+                // 国旗表情符号（由1F1E6-1F1FF的组合组成）
                 (code >= 0x1F1E6 && code <= 0x1F1FF)
             );
         }
 
-        // 워터마크 확인 문자 리스트 (GPT 등에서 워터마크로 알려진 특수 문자)
+        // 水印检查字符列表（GPT等已知的水印特殊字符）
         const KNOWN_WATERMARKS = [
-            0x202F, // 좁은 비분리 공백 (NNBSP)
-            0x200B, // 폭이 없는 공백 (ZWSP)
-            0x200C, // 폭이 없는 비결합자 (ZWNJ)
-            0x200D, // 폭이 없는 결합자 (ZWJ) - 이모지 결합용이 아닌 경우
-            0x2060, // 단어 결합자 (WJ)
-            0xFEFF, // 바이트 순서 표시 (BOM)
-            0x00AD, // 부드러운 하이픈 (SHY)
-            0x180E  // 몽골어 모음 구분자 (MVS)
+            0x202F, // 窄不换行空格 (NNBSP)
+            0x200B, // 零宽空格 (ZWSP)
+            0x200C, // 零宽非连接符 (ZWNJ)
+            0x200D, // 零宽连接符 (ZWJ) - 非表情符号连接用途
+            0x2060, // 词连接符 (WJ)
+            0xFEFF, // 字节顺序标记 (BOM)
+            0x00AD, // 软连字符 (SHY)
+            0x180E  // 蒙古语元音分隔符 (MVS)
         ];
 
-        // 워터마크 감지 및 표시 함수
+        // 水印检测和显示函数
         function detectWatermarks() {
             const text = inputText.value;
             if(!text) {
                 return;
             }
 
-            // 텍스트를 코드포인트 배열로 변환 (이모지 올바르게 처리)
+            // 将文本转换为码点数组（正确处理表情符号）
             const codePoints = Array.from(text);
 
             let highlightedText = '';
@@ -693,17 +728,17 @@ function isNormalTextCharacter(char) {
             for(let i = 0; i < codePoints.length; i++) {
                 const char = codePoints[i];
 
-                // 이모지 결합 시퀀스 처리
+                // 处理表情符号序列
                 if (isEmoji(char)) {
                     let emojiSequence = char;
                     let j = i + 1;
 
-                    // 이모지 시퀀스 스캔 (VS16, ZWJ 등과 결합한 이모지)
+                    // 扫描表情符号序列（与VS16、ZWJ等组合的表情符号）
                     while (j < codePoints.length) {
                         const nextChar = codePoints[j];
                         const nextCode = nextChar.codePointAt(0);
 
-                        // 결합자나 변형 선택자가 뒤따르는 경우
+                        // 后面跟着连接符或变体选择符的情况
                         if (nextCode === 0x200D || nextCode === 0xFE0F || isEmoji(nextChar)) {
                             emojiSequence += nextChar;
                             j++;
@@ -712,35 +747,35 @@ function isNormalTextCharacter(char) {
                         }
                     }
 
-                    // 전체 이모지 시퀀스 처리
+                    // 处理整个表情符号序列
                     highlightedText += escapeHTML(emojiSequence);
                     cleanText += emojiSequence;
 
-                    // 인덱스 업데이트
+                    // 更新索引
                     i = j - 1;
                 }
-                // 일반 텍스트 문자가 아니거나 알려진 워터마크인 경우
+                // 非普通文本字符或已知的水印，且不是表情符号序列的一部分
                 else if(!isNormalTextCharacter(char) || (KNOWN_WATERMARKS.includes(char.codePointAt(0)) && !isPartOfEmojiSequence(char, codePoints, i))) {
-                    // 워터마크 문자 하이라이트
+                    // 高亮水印字符
                     const charCode = char.codePointAt(0);
                     highlightedText += `<span class="watermarked" title="U+${charCode.toString(16).toUpperCase().padStart(4, '0')}">□</span>`;
                     watermarkCount++;
                     detectedWatermarks.add(charCode);
                 } else {
-                    // 일반 문자
+                    // 普通字符
                     highlightedText += escapeHTML(char);
                     cleanText += char;
                 }
             }
 
-            // 결과 표시
+            // 显示结果
             outputDisplay.innerHTML = highlightedText;
 
-            // 워터마크 통계 표시
+            // 显示水印统计
             if(detectedWatermarks.size > 0) {
-                stats.innerHTML = `발견됨: ${watermarkCount}개의 워터마크 문자가 감지되었습니다 (${detectedWatermarks.size}종류의 특수 문자).`;
+                stats.innerHTML = `已发现：${watermarkCount}个水印字符（${detectedWatermarks.size}种特殊字符）。`;
 
-                // 워터마크 목록 생성
+                // 生成水印列表
                 let watermarksListHTML = '<ul class="watermarks-list">';
                 const sortedCodes = Array.from(detectedWatermarks).sort((a, b) => a - b);
 
@@ -748,9 +783,9 @@ function isNormalTextCharacter(char) {
                     const hexCode = code.toString(16).toUpperCase().padStart(4, '0');
                     const isKnownWatermark = KNOWN_WATERMARKS.includes(code);
 
-                    // 알려진 워터마크일 경우 강조
+                    // 已知水印加粗显示
                     if(isKnownWatermark) {
-                        watermarksListHTML += `<li><strong>U+${hexCode}</strong> - ${getUnicodeDescription(code)} (알려진 워터마크)</li>`;
+                        watermarksListHTML += `<li><strong>U+${hexCode}</strong> - ${getUnicodeDescription(code)} (已知水印)</li>`;
                     } else {
                         watermarksListHTML += `<li>U+${hexCode} - ${getUnicodeDescription(code)}</li>`;
                     }
@@ -759,11 +794,11 @@ function isNormalTextCharacter(char) {
 
                 watermarksList.innerHTML = watermarksListHTML;
             } else {
-                stats.innerHTML = '워터마크가 감지되지 않았습니다.';
+                stats.innerHTML = '未检测到水印。';
                 watermarksList.innerHTML = '';
             }
 
-            // 복사 버튼에 정제된 텍스트 저장
+            // 将净化后的文本保存到复制按钮
             copyBtn.setAttribute('data-clipboard', cleanText);
 
             return {
@@ -773,12 +808,12 @@ function isNormalTextCharacter(char) {
             };
         }
 
-        // 문자가 이모지 시퀀스의 일부인지 확인
+        // 检查字符是否为表情符号序列的一部分
         function isPartOfEmojiSequence(char, text, position) {
-            // 현재 문자가 이모지 결합자나 변형 선택자인 경우
+            // 当前字符为表情符号连接符或变体选择符
             const code = char.codePointAt(0);
             if (code === 0x200D || code === 0xFE0F) {
-                // 앞뒤 문자 중 하나라도 이모지면 이모지 시퀀스의 일부로 간주
+                // 如果前后字符中任一是表情符号，则视为表情符号序列的一部分
                 if (position > 0 && isEmoji(text[position-1])) {
                     return true;
                 }
@@ -789,72 +824,72 @@ function isNormalTextCharacter(char) {
             return false;
         }
 
-        // 유니코드 설명 가져오기
+        // 获取Unicode字符描述
         function getUnicodeDescription(code) {
-            // 알려진 유니코드 설명
+            // 已知Unicode描述
             const descriptions = {
-                // 알려진 워터마크
-                0x202F: "좁은 비분리 공백 (NNBSP)",
-                0x200B: "폭이 없는 공백 (ZWSP)",
-                0x200C: "폭이 없는 비결합자 (ZWNJ)",
-                0x200D: "폭이 없는 결합자 (ZWJ)",
-                0x2060: "단어 결합자 (WJ)",
-                0xFEFF: "바이트 순서 표시 (BOM)",
-                0x00AD: "부드러운 하이픈 (SHY)",
-                0x180E: "몽골어 모음 구분자 (MVS)",
+                // 已知水印
+                0x202F: "窄不换行空格 (NNBSP)",
+                0x200B: "零宽空格 (ZWSP)",
+                0x200C: "零宽非连接符 (ZWNJ)",
+                0x200D: "零宽连接符 (ZWJ)",
+                0x2060: "词连接符 (WJ)",
+                0xFEFF: "字节顺序标记 (BOM)",
+                0x00AD: "软连字符 (SHY)",
+                0x180E: "蒙古语元音分隔符 (MVS)",
 
-                // 일반적인 서식 문자
-                0x000A: "라인 피드 (LF, \\n)",
-                0x000D: "캐리지 리턴 (CR, \\r)",
-                0x0009: "탭 (Tab, \\t)",
+                // 常见格式字符
+                0x000A: "换行符 (LF, \\n)",
+                0x000D: "回车符 (CR, \\r)",
+                0x0009: "制表符 (Tab, \\t)",
 
-                // 공백 문자
-                0x0020: "일반 공백 (SP)",
-                0x00A0: "줄바꿈 없는 공백 (NBSP)",
-                0x2000: "전각 공백 (NQSP)",
-                0x2001: "전각 공백 (MQSP)",
-                0x2002: "전각 공백 (ENSP)",
-                0x2003: "전각 공백 (EMSP)",
-                0x2004: "삼분 간격 (3/EMSP)",
-                0x2005: "사분 간격 (4/EMSP)",
-                0x2006: "육분 간격 (6/EMSP)",
-                0x2007: "숫자 공백 (NUMSP)",
-                0x2008: "구두점 공백 (PUNCSP)",
-                0x2009: "얇은 공백 (THSP)",
-                0x200A: "헤어 스페이스 (HSP)",
-                0x205F: "중간 수학 공백 (MMSP)",
+                // 空格字符
+                0x0020: "普通空格 (SP)",
+                0x00A0: "不换行空格 (NBSP)",
+                0x2000: "全角空格 (NQSP)",
+                0x2001: "全角空格 (MQSP)",
+                0x2002: "全角空格 (ENSP)",
+                0x2003: "全角空格 (EMSP)",
+                0x2004: "三分之一空格 (3/EMSP)",
+                0x2005: "四分之一空格 (4/EMSP)",
+                0x2006: "六分之一空格 (6/EMSP)",
+                0x2007: "数字空格 (NUMSP)",
+                0x2008: "标点空格 (PUNCSP)",
+                0x2009: "薄空格 (THSP)",
+                0x200A: "头发空格 (HSP)",
+                0x205F: "中数学空格 (MMSP)",
 
-                // 이모지 관련
-                0xFE0F: "변형 선택자 16 (VS16) - 이모지 스타일"
+                // 表情符号相关
+                0xFE0F: "变体选择符-16 (VS16) - 表情符号样式"
             };
 
-            // 이모지 범위에 대한 일반 설명
+            // 表情符号范围的通用描述
             if (isEmojiCodePoint(code)) {
-                return "이모지 문자";
+                return "表情符号字符";
             }
 
-            return descriptions[code] || "알 수 없는 특수 문자";
+            return descriptions[code] || "未知特殊字符";
         }
 
-        // 코드포인트가 이모지 범위에 속하는지 확인
+        // 检查码点是否属于表情符号范围
         function isEmojiCodePoint(code) {
             return (
-                (code >= 0x1F600 && code <= 0x1F64F) || // 이모티콘
-                (code >= 0x1F300 && code <= 0x1F5FF) || // 기타 기호 및 픽토그램
-                (code >= 0x1F680 && code <= 0x1F6FF) || // 교통 및 지도 기호
-                (code >= 0x1F700 && code <= 0x1F77F) || // 연금술 기호
-                (code >= 0x1F780 && code <= 0x1F7FF) || // 기하학적 모양
-                (code >= 0x1F800 && code <= 0x1F8FF) || // 추가 화살표
-                (code >= 0x1F900 && code <= 0x1F9FF) || // 추가 이모지
-                (code >= 0x1FA00 && code <= 0x1FA6F) || // 체스 기호
-                (code >= 0x1FA70 && code <= 0x1FAFF) || // 기타 기호
-                (code >= 0x2600 && code <= 0x26FF) || // 기타 기호
-                (code >= 0x2700 && code <= 0x27BF) || // 장식용 문자
-                (code >= 0x1F1E6 && code <= 0x1F1FF)  // 국기 이모지
+                (code >= 0x1F600 && code <= 0x1F64F) || // 表情符号
+                (code >= 0x1F300 && code <= 0x1F5FF) || // 其他符号和象形图
+                (code >= 0x1F680 && code <= 0x1F6FF) || // 交通和地图符号
+                (code >= 0x1F700 && code <= 0x1F77F) || // 炼金术符号
+                (code >= 0x1F780 && code <= 0x1F7FF) || // 几何形状
+                (code >= 0x1F800 && code <= 0x1F8FF) || // 补充箭头
+                (code >= 0x1F900 && code <= 0x1F9FF) || // 补充表情符号
+                (code >= 0x1FA00 && code <= 0x1FA6F) || // 国际象棋符号
+                (code >= 0x1FA70 && code <= 0x1FAFF) || // 其他符号
+                (code >= 0x2600 && code <= 0x26FF) || // 其他符号
+                (code >= 0x2700 && code <= 0x27BF) || // 装饰性字符
+                (code >= 0x1F1E6 && code <= 0x1F1FF)  // 国旗表情符号
             );
         }
 
-        // HTML 문자 이스케이프
+        // HTML字符转义
         function escapeHTML(text) {
             return text
                 .replace(/&/g, "&amp;")
@@ -864,48 +899,48 @@ function isNormalTextCharacter(char) {
                 .replace(/'/g, "&#039;");
         }
 
-        // 워터마크 감지 및 표시 이벤트 (버튼 클릭)
+        // 水印检测和显示事件（按钮点击）
         checkBtn.addEventListener('click', function() {
             const text = inputText.value;
             if(!text) {
-                alert('텍스트를 입력해주세요.');
+                alert('请输入文本。');
                 return;
             }
 
             detectWatermarks();
         });
 
-        // 텍스트 복사
+        // 复制文本
         copyBtn.addEventListener('click', function() {
             const textToCopy = copyBtn.getAttribute('data-clipboard');
             if(!textToCopy) {
-                alert('먼저 워터마크를 확인해주세요.');
+                alert('请先检查水印。');
                 return;
             }
 
             navigator.clipboard.writeText(textToCopy)
                 .then(() => {
-                    alert('워터마크가 제거된 텍스트가 클립보드에 복사되었습니다.');
+                    alert('已移除水印的文本已复制到剪贴板。');
                 })
                 .catch(err => {
-                    console.error('복사 실패:', err);
-                    alert('복사에 실패했습니다. 수동으로 선택하여 복사해주세요.');
+                    console.error('复制失败:', err);
+                    alert('复制失败。请手动选择并复制。');
                 });
         });
 
-        // 모두 지우기
+        // 清空所有内容
         clearBtn.addEventListener('click', function() {
             inputText.value = '';
-            outputDisplay.innerHTML = '워터마크가 표시될 부분입니다. \'워터마크 확인\' 버튼을 클릭하세요.';
-            stats.innerHTML = '워터마크 없음';
+            outputDisplay.innerHTML = '水印将显示在此处。点击"检查水印"按钮。';
+            stats.innerHTML = '无水印';
             watermarksList.innerHTML = '';
             copyBtn.removeAttribute('data-clipboard');
             previousInputValue = '';
         });
 
-        // 키보드 단축키
+        // 键盘快捷键
         document.addEventListener('keydown', function(e) {
-            // Ctrl+Enter: 워터마크 확인
+            // Ctrl+Enter: 检查水印
             if (e.ctrlKey && e.key === 'Enter') {
                 if (document.activeElement === inputText && inputText.value.trim() !== '') {
                     e.preventDefault();
@@ -913,9 +948,9 @@ function isNormalTextCharacter(char) {
                 }
             }
 
-            // 현재 포커스가 텍스트 입력란이 아닐 때만 단축키 처리
+            // 当前焦点不在文本输入框时才处理快捷键
             if (document.activeElement !== inputText) {
-                // C: 복사
+                // C: 复制
                 if (e.key === 'c' || e.key === 'C') {
                     if (copyBtn.hasAttribute('data-clipboard')) {
                         e.preventDefault();
@@ -923,7 +958,7 @@ function isNormalTextCharacter(char) {
                     }
                 }
 
-                // D: 자동 검출 모드 토글
+                // D: 切换自动检测模式
                 if (e.key === 'd' || e.key === 'D') {
                     e.preventDefault();
                     autoDetectToggle.checked = !autoDetectToggle.checked;
@@ -932,7 +967,7 @@ function isNormalTextCharacter(char) {
             }
         });
 
-        // 초기 입력 값이 있다면 자동 검출 모드가 켜져 있을 때 자동 분석
+        // 如果有初始输入值且自动检测模式开启，则自动分析
         if (autoDetectToggle.checked && inputText.value.trim() !== '') {
             detectWatermarks();
         }

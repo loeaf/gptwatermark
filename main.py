@@ -15,7 +15,7 @@ app = FastAPI(
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # 다국어 지원을 위한 설정
-LANGUAGES = ["ko", "en", "ja"]
+LANGUAGES = ["ko", "en", "zh", "hi"]
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -48,10 +48,15 @@ async def english_page():
     return FileResponse("en.html")
 
 
-@app.get("/ja/", response_class=HTMLResponse)
+@app.get("/zh/", response_class=HTMLResponse)
 async def japanese_page():
-    """일본어 페이지 제공"""
-    return FileResponse("ja.html")
+    """중국어 페이지 제공"""
+    return FileResponse("zh.html")
+
+@app.get("/hi/", response_class=HTMLResponse)
+async def japanese_page():
+    """중국어 페이지 제공"""
+    return FileResponse("hi.html")
 
 
 @app.get("/sitemap.xml", response_class=HTMLResponse)
@@ -74,6 +79,7 @@ Allow: /
 Allow: /ko/
 Allow: /en/
 Allow: /ja/
+Allow: /hi/
 Sitemap: https://gptmark.loeaf.com/sitemap.xml
 """
 

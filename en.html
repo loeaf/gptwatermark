@@ -386,7 +386,8 @@
             <div class="language-selector">
                 <a href="/ko/" class="language-link">한국어</a>
                 <a href="/en/" class="language-link active">English</a>
-                <a href="/ja/" class="language-link">日本語</a>
+                <a href="/zh/" class="language-link">中國語</a>
+                <a href="/hi" class="language-link">हिन्दी</a>
             </div>
         </div>
     </header>
@@ -530,70 +531,107 @@
                 }, 50); // Short delay to allow for DOM update after paste event
             }
         });
+function isNormalTextCharacter(char) {
+    const code = char.charCodeAt(0);
 
-        // Check if character is in normal text range
-        function isNormalTextCharacter(char) {
-            const code = char.charCodeAt(0);
+    // 이모지 검사
+    if (isEmoji(char)) {
+        return true;
+    }
 
-            // Check if character is emoji
-            if (isEmoji(char)) {
-                return true;
-            }
+    // 일반 텍스트 문자 검사 (여러 언어 지원)
+    return (
+        // 기본 라틴 문자 (ASCII)
+        (code >= 0x0020 && code <= 0x007E) ||
 
-            // Common text characters (multiple languages support)
-            return (
-                // Basic Latin (ASCII)
-                (code >= 0x0020 && code <= 0x007E) ||
+        // 라틴 확장
+        (code >= 0x00A0 && code <= 0x00FF) ||
+        (code >= 0x0100 && code <= 0x017F) ||
+        (code >= 0x0180 && code <= 0x024F) ||
 
-                // Korean
-                (code >= 0xAC00 && code <= 0xD7A3) ||
-                (code >= 0x1100 && code <= 0x11FF) || // Hangul Jamo
-                (code >= 0x3130 && code <= 0x318F) || // Hangul Compatibility Jamo
+        // 한국어 (한글)
+        (code >= 0xAC00 && code <= 0xD7A3) || // 한글 음절 (완성형)
+        (code >= 0x1100 && code <= 0x11FF) || // 한글 자모 (초성, 중성, 종성)
+        (code >= 0x3130 && code <= 0x318F) || // 한글 호환 자모
+        (code >= 0xA960 && code <= 0xA97F) || // 한글 확장 자모 A
+        (code >= 0xD7B0 && code <= 0xD7FF) || // 한글 확장 자모 B
 
-                // Japanese
-                (code >= 0x3040 && code <= 0x309F) || // Hiragana
-                (code >= 0x30A0 && code <= 0x30FF) || // Katakana
-                (code >= 0x4E00 && code <= 0x9FFF) || // CJK Unified Ideographs
+        // 일본어
+        (code >= 0x3040 && code <= 0x309F) || // 히라가나
+        (code >= 0x30A0 && code <= 0x30FF) || // 가타카나
+        (code >= 0x31F0 && code <= 0x31FF) || // 가타카나 확장
+        (code >= 0xFF65 && code <= 0xFF9F) || // 반각 가타카나
 
-                // Chinese (mostly overlaps with CJK)
+        // 중국어 및 CJK 통합 한자
+        (code >= 0x4E00 && code <= 0x9FFF) || // CJK 통합 한자 (기본)
+        (code >= 0x3400 && code <= 0x4DBF) || // CJK 통합 한자 확장 A
+        (code >= 0x20000 && code <= 0x2A6DF) || // CJK 통합 한자 확장 B
+        (code >= 0x2A700 && code <= 0x2B73F) || // CJK 통합 한자 확장 C
+        (code >= 0x2B740 && code <= 0x2B81F) || // CJK 통합 한자 확장 D
+        (code >= 0x2B820 && code <= 0x2CEAF) || // CJK 통합 한자 확장 E
+        (code >= 0x2CEB0 && code <= 0x2EBEF) || // CJK 통합 한자 확장 F
+        (code >= 0xF900 && code <= 0xFAFF) || // CJK 호환 한자
+        (code >= 0x2F800 && code <= 0x2FA1F) || // CJK 호환 한자 보충
 
-                // Arabic
-                (code >= 0x0600 && code <= 0x06FF) ||
+        // 힌디어 (데바나가리)
+        (code >= 0x0900 && code <= 0x097F) || // 데바나가리
+        (code >= 0xA8E0 && code <= 0xA8FF) || // 데바나가리 확장
 
-                // Cyrillic (Russian, etc.)
-                (code >= 0x0400 && code <= 0x04FF) ||
+        // 기타 인도 언어
+        (code >= 0x0980 && code <= 0x09FF) || // 벵골어
+        (code >= 0x0A00 && code <= 0x0A7F) || // 구르무키 (펀자브어)
+        (code >= 0x0A80 && code <= 0x0AFF) || // 구자라트어
+        (code >= 0x0B00 && code <= 0x0B7F) || // 오리야어
+        (code >= 0x0B80 && code <= 0x0BFF) || // 타밀어
+        (code >= 0x0C00 && code <= 0x0C7F) || // 텔루구어
+        (code >= 0x0C80 && code <= 0x0CFF) || // 칸나다어
+        (code >= 0x0D00 && code <= 0x0D7F) || // 말라얄람어
 
-                // Greek
-                (code >= 0x0370 && code <= 0x03FF) ||
+        // 러시아어 (키릴 문자)
+        (code >= 0x0400 && code <= 0x04FF) || // 키릴 문자
+        (code >= 0x0500 && code <= 0x052F) || // 키릴 문자 확장
 
-                // Common punctuation and symbols
-                (code >= 0x2000 && code <= 0x206F) || // General Punctuation
+        // 아랍어
+        (code >= 0x0600 && code <= 0x06FF) || // 아랍어
+        (code >= 0x0750 && code <= 0x077F) || // 아랍어 확장 A
 
-                // Common math symbols
-                (code >= 0x2200 && code <= 0x22FF) ||
+        // 히브리어
+        (code >= 0x0590 && code <= 0x05FF) || // 히브리어
 
-                // Currency symbols
-                (code >= 0x20A0 && code <= 0x20CF) ||
+        // 타이어
+        (code >= 0x0E00 && code <= 0x0E7F) || // 타이어
 
-                // Latin Extended
-                (code >= 0x00A0 && code <= 0x00FF) ||
-                (code >= 0x0100 && code <= 0x017F) ||
+        // 그리스어
+        (code >= 0x0370 && code <= 0x03FF) || // 그리스어 및 콥트어
 
-                // Common whitespace characters
-                code === 0x0020 || // Space
-                code === 0x00A0 || // No-Break Space (NBSP)
+        // CJK 관련 기호
+        (code >= 0x3000 && code <= 0x303F) || // CJK 기호 및 구두점
+        (code >= 0xFF00 && code <= 0xFFEF) || // 전각 문자
 
-                // Newlines and formatting
-                code === 0x000A || // Line Feed (LF, \n)
-                code === 0x000D || // Carriage Return (CR, \r)
-                code === 0x0009 || // Tab (\t)
+        // 일반적인 구두점 및 기호
+        (code >= 0x2000 && code <= 0x206F) || // 일반 구두점
+        (code >= 0x2070 && code <= 0x209F) || // 윗첨자 및 아래첨자
+        (code >= 0x20A0 && code <= 0x20CF) || // 통화 기호
+        (code >= 0x2100 && code <= 0x214F) || // 문자형 기호
+        (code >= 0x2150 && code <= 0x218F) || // 숫자형
+        (code >= 0x2190 && code <= 0x21FF) || // 화살표
+        (code >= 0x2200 && code <= 0x22FF) || // 수학 연산자
 
-                // Common punctuation
-                [0x002C, 0x002E, 0x003B, 0x003A, 0x003F, 0x0021,
-                 0x2026, 0x2014, 0x2013, 0x201C, 0x201D, 0x2018,
-                 0x2019, 0x00AB, 0x00BB].includes(code)
-            );
-        }
+        // 일반적으로 사용되는 공백 문자
+        code === 0x0020 || // 일반 공백
+        code === 0x00A0 || // 줄바꿈 없는 공백 (NBSP)
+
+        // 줄바꿈 및 서식 문자
+        code === 0x000A || // 라인 피드 (LF, \n)
+        code === 0x000D || // 캐리지 리턴 (CR, \r)
+        code === 0x0009 || // 탭 (Tab, \t)
+
+        // 일반적인 문장 부호
+        [0x002C, 0x002E, 0x003B, 0x003A, 0x003F, 0x0021,
+         0x2026, 0x2014, 0x2013, 0x201C, 0x201D, 0x2018,
+         0x2019, 0x00AB, 0x00BB, 0x2212, 0x00B7].includes(code)
+    );
+}
 
         // Check if character is emoji
         function isEmoji(char) {
