@@ -74,7 +74,7 @@ Allow: /
 Allow: /ko/
 Allow: /en/
 Allow: /ja/
-Sitemap: https://gpt-watermark-remover.example.com/sitemap.xml
+Sitemap: https://gptmark.loeaf.com/sitemap.xml
 """
 
 
