@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT워터마크제거 - 모든 숨겨진 특수 문자 감지 및 제거</title>
+
+    <!-- SEO 메타 태그 -->
+    <meta name="description" content="GPT로 생성된 텍스트에 포함된 모든 종류의 숨겨진 워터마크와 특수 문자를 감지하고 제거하는 무료 도구입니다.">
+    <meta name="keywords" content="GPT, ChatGPT, GPT-4, 워터마크, 워터마크 제거, 텍스트 정제, 특수문자 제거, AI 텍스트, 유니코드 감지">
+    <meta name="author" content="GPT워터마크제거">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gpt-watermark-remover.example.com/ko/">
+    <meta property="og:title" content="GPT워터마크제거 - 모든 숨겨진 특수 문자 감지 및 제거">
+    <meta property="og:description" content="ChatGPT와 GPT-4에서 생성된 텍스트의 숨겨진 워터마크와 특수 문자를 감지하고 제거하는 무료 도구">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://gpt-watermark-remover.example.com/ko/">
+    <meta property="twitter:title" content="GPT워터마크제거 - 모든 숨겨진 특수 문자 감지 및 제거">
+    <meta property="twitter:description" content="ChatGPT와 GPT-4에서 생성된 텍스트의 숨겨진 워터마크와 특수 문자를 감지하고 제거하는 무료 도구">
+
+    <!-- 캐노니컬 태그 -->
+    <link rel="canonical" href="https://gpt-watermark-remover.example.com/ko/">
+
+    <!-- 언어 선택 링크 -->
+    <link rel="alternate" hreflang="ko" href="https://gpt-watermark-remover.example.com/ko/">
+    <link rel="alternate" hreflang="en" href="https://gpt-watermark-remover.example.com/en/">
+    <link rel="alternate" hreflang="ja" href="https://gpt-watermark-remover.example.com/ja/">
+    <link rel="alternate" hreflang="x-default" href="https://gpt-watermark-remover.example.com/">
+
+    <!-- RSS 링크 -->
+    <link rel="alternate" type="application/rss+xml" title="GPT워터마크제거 업데이트" href="/rss.xml">
+
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+
+    <!-- 구글 폰트: 한국어 지원 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 기본 스타일시트 -->
+    <style>
+        :root {
+            --primary-color: #4285f4;
+            --secondary-color: #34a853;
+            --accent-color: #fbbc05;
+            --warning-color: #ea4335;
+            --background-color: #f8f9fa;
+            --card-color: #ffffff;
+            --text-color: #202124;
+            --text-secondary: #5f6368;
+            --border-color: #dadce0;
+            --switch-width: 60px;
+            --switch-height: 28px;
+            --switch-padding: 2px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--card-color);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 15px;
+        }
+
+        .language-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 5px;
+        }
+
+        .language-link.active {
+            color: var(--primary-color);
+            font-weight: bold;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .app-container {
+                flex-direction: row;
+            }
+        }
+
+        .input-section, .output-section {
+            flex: 1;
+            background-color: var(--card-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .input-textarea {
+            width: 100%;
+            min-height: 250px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1rem;
+            font-size: 1rem;
+            resize: vertical;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .output-title {
+            margin-bottom: 1rem;
+        }
+
+        .output-display {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1rem;
+            min-height: 150px;
+            margin-bottom: 1rem;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: monospace;
+            flex-grow: 1;
+        }
+
+        .highlight {
+            background-color: var(--accent-color);
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--card-color);
+            color: var(--text-secondary);
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .info-box {
+            background-color: rgba(66, 133, 244, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .watermarked {
+            color: var(--text-color);
+            background-color: var(--accent-color);
+            cursor: help;
+        }
+
+        .watermarks-list {
+            margin-top: 0.5rem;
+            padding-left: 1.5rem;
+            font-family: monospace;
+        }
+
+        .watermarks-container {
+            margin-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .stats-container {
+            margin-bottom: 1rem;
+        }
+
+        /* 자동 검출 모드 스위치 스타일 */
+        .auto-detect-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 8px 12px;
+            background-color: rgba(66, 133, 244, 0.05);
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: var(--switch-width);
+            height: var(--switch-height);
+            margin-right: 10px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: calc(var(--switch-height) - 2 * var(--switch-padding));
+            width: calc(var(--switch-height) - 2 * var(--switch-padding));
+            left: var(--switch-padding);
+            bottom: var(--switch-padding);
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(calc(var(--switch-width) - var(--switch-height)));
+        }
+
+        .auto-detect-label {
+            font-weight: 500;
+        }
+
+        .auto-detect-description {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* 키보드 단축키 표시 */
+        .keyboard-shortcut {
+            display: inline-block;
+            padding: 2px 5px;
+            margin: 0 2px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            background-color: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        /* 로딩 표시기 */
+        .loading-indicator {
+            display: none;
+            align-items: center;
+            margin-left: 10px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            border: 2px solid var(--background-color);
+            border-top: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>GPT워터마크제거</h1>
+            <div class="language-selector">
+                <a href="/ko/" class="language-link active">한국어</a>
+                <a href="/en/" class="language-link">English</a>
+                <a href="/ja/" class="language-link">日本語</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="title">GPT워터마크제거</h1>
+        <p class="subtitle">OpenAI의 GPT 모델 및 기타 AI에서 생성된 텍스트에 포함된 워터마크와 모든 종류의 숨겨진 특수 문자를 감지하고 제거합니다.</p>
+
+        <div class="info-box">
+            <p>📝 GPT는 생성한 텍스트에 '좁은 비분리 공백(U+202F)'과 같은 특수한 유니코드 문자를 워터마크로 삽입합니다. 이 도구는 모든 비정상적인 특수 문자를 감지하고 표시한 후 제거합니다.</p>
+        </div>
+
+        <div class="app-container">
+            <div class="input-section">
+                <h2 class="section-title">1. 텍스트 입력</h2>
+
+                <!-- 자동 검출 모드 스위치 추가 -->
+                <div class="auto-detect-container">
+                    <label class="switch">
+                        <input type="checkbox" id="autoDetectToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <div>
+                        <div class="auto-detect-label">자동 검출 모드</div>
+                        <div class="auto-detect-description">
+                            입력 또는 붙여넣기 시 자동으로 워터마크를 검사합니다
+                            <span class="keyboard-shortcut">Ctrl+V</span>
+                        </div>
+                    </div>
+                    <div class="loading-indicator" id="loadingIndicator">
+                        <div class="loading-spinner"></div>
+                        <span>검사 중...</span>
+                    </div>
+                </div>
+
+                <textarea id="inputText" class="input-textarea" placeholder="여기에 GPT로 생성된 텍스트를 붙여넣으세요..."></textarea>
+                <div class="buttons">
+                    <button id="clearBtn" class="btn btn-secondary">모두 지우기</button>
+                    <button id="checkBtn" class="btn btn-primary">워터마크 확인</button>
+                </div>
+            </div>
+
+            <div class="output-section">
+                <h2 class="section-title">2. 워터마크 확인 결과</h2>
+                <div id="outputDisplay" class="output-display">워터마크가 표시될 부분입니다. '워터마크 확인' 버튼을 클릭하세요.</div>
+                <div class="buttons">
+                    <button id="copyBtn" class="btn btn-primary">복사하기</button>
+                </div>
+
+                <div class="stats-container">
+                    <h3 class="output-title">감지 결과:</h3>
+                    <div id="stats">워터마크 없음</div>
+                </div>
+
+                <div class="watermarks-container">
+                    <h3 class="output-title">감지된 특수 문자 (워터마크):</h3>
+                    <div id="watermarksList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 GPT워터마크제거. 모든 권리 보유.</p>
+        <p>이 서비스는 텍스트 내 숨겨진 워터마크를 감지하고 제거하기 위한 교육 목적으로 제공됩니다.</p>
+    </footer>
+
+    <script>
+        // DOM 요소
+        const inputText = document.getElementById('inputText');
+        const outputDisplay = document.getElementById('outputDisplay');
+        const checkBtn = document.getElementById('checkBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const stats = document.getElementById('stats');
+        const watermarksList = document.getElementById('watermarksList');
+        const autoDetectToggle = document.getElementById('autoDetectToggle');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+
+        // 자동 감지 모드 타이머
+        let autoDetectTimer = null;
+        const AUTO_DETECT_DELAY = 500; // 입력 후 자동 감지 시작 전 지연 시간 (ms)
+        let previousInputValue = ''; // 이전 입력값 저장
+
+        // 자동 감지 모드 상태 로컬 스토리지에서 불러오기
+        const savedAutoDetectState = localStorage.getItem('autoDetectMode');
+        if (savedAutoDetectState === 'true') {
+            autoDetectToggle.checked = true;
+        }
+
+        // 자동 감지 모드 토글 이벤트
+        autoDetectToggle.addEventListener('change', function() {
+            // 설정 저장
+            localStorage.setItem('autoDetectMode', this.checked);
+
+            if (this.checked && inputText.value.trim() !== '') {
+                // 토글 활성화 시 현재 텍스트 즉시 검사
+                detectWatermarks();
+            }
+        });
+
+        // 입력 이벤트 (자동 감지 모드)
+        inputText.addEventListener('input', function() {
+            if (autoDetectToggle.checked) {
+                // 이전 타이머 취소
+                if (autoDetectTimer) {
+                    clearTimeout(autoDetectTimer);
+                }
+
+                // 현재 입력값이 이전 입력값과 크게 다른 경우에만 감지 진행
+                // (단일 키 입력이 아닌 붙여넣기 등의 대량 입력 감지)
+                const currentValue = this.value;
+                const lengthDifference = Math.abs(currentValue.length - previousInputValue.length);
+
+                if (lengthDifference > 10) {
+                    // 로딩 표시기 표시
+                    loadingIndicator.style.display = 'flex';
+
+                    // 지연 후 감지 실행
+                    autoDetectTimer = setTimeout(() => {
+                        detectWatermarks();
+                        previousInputValue = currentValue;
+                        loadingIndicator.style.display = 'none';
+                    }, AUTO_DETECT_DELAY);
+                } else {
+                    previousInputValue = currentValue;
+                }
+            }
+        });
+
+        // 붙여넣기 이벤트 특별 처리 (자동 감지 모드)
+        inputText.addEventListener('paste', function() {
+            if (autoDetectToggle.checked) {
+                // 붙여넣기 작업이 완료된 후 감지 실행
+                loadingIndicator.style.display = 'flex';
+
+                setTimeout(() => {
+                    detectWatermarks();
+                    previousInputValue = this.value;
+                    loadingIndicator.style.display = 'none';
+                }, 50); // 붙여넣기 이벤트 후 DOM 업데이트를 위한 짧은 지연
+            }
+        });
+
+        // 일반 텍스트에서 사용되는 문자 범위 확인 함수
+        function isNormalTextCharacter(char) {
+            const code = char.charCodeAt(0);
+
+            // 이모지 문자 범위 확인
+            if (isEmoji(char)) {
+                return true;
+            }
+
+            // 일반적인 텍스트 문자 (여러 언어 지원)
+            return (
+                // 기본 라틴 문자 (ASCII)
+                (code >= 0x0020 && code <= 0x007E) ||
+
+                // 한글
+                (code >= 0xAC00 && code <= 0xD7A3) ||
+                (code >= 0x1100 && code <= 0x11FF) || // 한글 자모
+                (code >= 0x3130 && code <= 0x318F) || // 한글 호환 자모
+
+                // 일본어
+                (code >= 0x3040 && code <= 0x309F) || // 히라가나
+                (code >= 0x30A0 && code <= 0x30FF) || // 가타카나
+                (code >= 0x4E00 && code <= 0x9FFF) || // 한자 (CJK 통합 한자)
+
+                // 중국어 (대부분 한자와 겹침)
+
+                // 아랍어
+                (code >= 0x0600 && code <= 0x06FF) ||
+
+                // 키릴 문자 (러시아어 등)
+                (code >= 0x0400 && code <= 0x04FF) ||
+
+                // 그리스어
+                (code >= 0x0370 && code <= 0x03FF) ||
+
+                // 일반적인 구두점 및 기호
+                (code >= 0x2000 && code <= 0x206F) || // 일반 구두점
+
+                // 일반적인 수학 기호
+                (code >= 0x2200 && code <= 0x22FF) ||
+
+                // 통화 기호
+                (code >= 0x20A0 && code <= 0x20CF) ||
+
+                // 라틴 확장
+                (code >= 0x00A0 && code <= 0x00FF) ||
+                (code >= 0x0100 && code <= 0x017F) ||
+
+                // 일반적으로 사용되는 공백 문자
+                code === 0x0020 || // 일반 공백
+                code === 0x00A0 || // 줄바꿈 없는 공백 (NBSP)
+
+                // 줄바꿈 및 서식 문자
+                code === 0x000A || // 라인 피드 (LF, \n)
+                code === 0x000D || // 캐리지 리턴 (CR, \r)
+                code === 0x0009 || // 탭 (Tab, \t)
+
+                // 일반적인 문장 부호
+                [0x002C, 0x002E, 0x003B, 0x003A, 0x003F, 0x0021,
+                 0x2026, 0x2014, 0x2013, 0x201C, 0x201D, 0x2018,
+                 0x2019, 0x00AB, 0x00BB].includes(code)
+            );
+        }
+
+        // 이모지 확인 함수
+        function isEmoji(char) {
+            // 이모지 범위 확인
+            const code = char.codePointAt(0);
+
+            // 참고: 단일 유니코드 포인트 이모지 및 일부 이모지 블록 범위
+            return (
+                // 다양한 이모지 범위
+                (code >= 0x1F600 && code <= 0x1F64F) || // 이모티콘
+                (code >= 0x1F300 && code <= 0x1F5FF) || // 기타 기호 및 픽토그램
+                (code >= 0x1F680 && code <= 0x1F6FF) || // 교통 및 지도 기호
+                (code >= 0x1F700 && code <= 0x1F77F) || // 연금술 기호
+                (code >= 0x1F780 && code <= 0x1F7FF) || // 기하학적 모양
+                (code >= 0x1F800 && code <= 0x1F8FF) || // 추가 화살표
+                (code >= 0x1F900 && code <= 0x1F9FF) || // 추가 이모지
+                (code >= 0x1FA00 && code <= 0x1FA6F) || // 체스 기호
+                (code >= 0x1FA70 && code <= 0x1FAFF) || // 기타 기호
+
+                // 일반적인 문자지만 이모지로 사용되는 문자
+                (code >= 0x2600 && code <= 0x26FF) || // 기타 기호
+                (code >= 0x2700 && code <= 0x27BF) || // 장식용 문자
+
+                // 이모지 제어 문자
+                code === 0x200D ||  // 폭 없는 결합자 (ZWJ) - 이모지 결합에 사용됨
+                code === 0xFE0F ||  // 변형 선택자 16 (VS16) - 이모지 스타일에 사용됨
+
+                // 국기 이모지 (1F1E6-1F1FF의 조합으로 구성)
+                (code >= 0x1F1E6 && code <= 0x1F1FF)
+            );
+        }
+
+        // 워터마크 확인 문자 리스트 (GPT 등에서 워터마크로 알려진 특수 문자)
+        const KNOWN_WATERMARKS = [
+            0x202F, // 좁은 비분리 공백 (NNBSP)
+            0x200B, // 폭이 없는 공백 (ZWSP)
+            0x200C, // 폭이 없는 비결합자 (ZWNJ)
+            0x200D, // 폭이 없는 결합자 (ZWJ) - 이모지 결합용이 아닌 경우
+            0x2060, // 단어 결합자 (WJ)
+            0xFEFF, // 바이트 순서 표시 (BOM)
+            0x00AD, // 부드러운 하이픈 (SHY)
+            0x180E  // 몽골어 모음 구분자 (MVS)
+        ];
+
+        // 워터마크 감지 및 표시 함수
+        function detectWatermarks() {
+            const text = inputText.value;
+            if(!text) {
+                return;
+            }
+
+            // 텍스트를 코드포인트 배열로 변환 (이모지 올바르게 처리)
+            const codePoints = Array.from(text);
+
+            let highlightedText = '';
+            let cleanText = '';
+            let watermarkCount = 0;
+            let detectedWatermarks = new Set();
+
+            for(let i = 0; i < codePoints.length; i++) {
+                const char = codePoints[i];
+
+                // 이모지 결합 시퀀스 처리
+                if (isEmoji(char)) {
+                    let emojiSequence = char;
+                    let j = i + 1;
+
+                    // 이모지 시퀀스 스캔 (VS16, ZWJ 등과 결합한 이모지)
+                    while (j < codePoints.length) {
+                        const nextChar = codePoints[j];
+                        const nextCode = nextChar.codePointAt(0);
+
+                        // 결합자나 변형 선택자가 뒤따르는 경우
+                        if (nextCode === 0x200D || nextCode === 0xFE0F || isEmoji(nextChar)) {
+                            emojiSequence += nextChar;
+                            j++;
+                        } else {
+                            break;
+                        }
+                    }
+
+                    // 전체 이모지 시퀀스 처리
+                    highlightedText += escapeHTML(emojiSequence);
+                    cleanText += emojiSequence;
+
+                    // 인덱스 업데이트
+                    i = j - 1;
+                }
+                // 일반 텍스트 문자가 아니거나 알려진 워터마크인 경우
+                else if(!isNormalTextCharacter(char) || (KNOWN_WATERMARKS.includes(char.codePointAt(0)) && !isPartOfEmojiSequence(char, codePoints, i))) {
+                    // 워터마크 문자 하이라이트
+                    const charCode = char.codePointAt(0);
+                    highlightedText += `<span class="watermarked" title="U+${charCode.toString(16).toUpperCase().padStart(4, '0')}">□</span>`;
+                    watermarkCount++;
+                    detectedWatermarks.add(charCode);
+                } else {
+                    // 일반 문자
+                    highlightedText += escapeHTML(char);
+                    cleanText += char;
+                }
+            }
+
+            // 결과 표시
+            outputDisplay.innerHTML = highlightedText;
+
+            // 워터마크 통계 표시
+            if(detectedWatermarks.size > 0) {
+                stats.innerHTML = `발견됨: ${watermarkCount}개의 워터마크 문자가 감지되었습니다 (${detectedWatermarks.size}종류의 특수 문자).`;
+
+                // 워터마크 목록 생성
+                let watermarksListHTML = '<ul class="watermarks-list">';
+                const sortedCodes = Array.from(detectedWatermarks).sort((a, b) => a - b);
+
+                for(let code of sortedCodes) {
+                    const hexCode = code.toString(16).toUpperCase().padStart(4, '0');
+                    const isKnownWatermark = KNOWN_WATERMARKS.includes(code);
+
+                    // 알려진 워터마크일 경우 강조
+                    if(isKnownWatermark) {
+                        watermarksListHTML += `<li><strong>U+${hexCode}</strong> - ${getUnicodeDescription(code)} (알려진 워터마크)</li>`;
+                    } else {
+                        watermarksListHTML += `<li>U+${hexCode} - ${getUnicodeDescription(code)}</li>`;
+                    }
+                }
+                watermarksListHTML += '</ul>';
+
+                watermarksList.innerHTML = watermarksListHTML;
+            } else {
+                stats.innerHTML = '워터마크가 감지되지 않았습니다.';
+                watermarksList.innerHTML = '';
+            }
+
+            // 복사 버튼에 정제된 텍스트 저장
+            copyBtn.setAttribute('data-clipboard', cleanText);
+
+            return {
+                hasWatermarks: detectedWatermarks.size > 0,
+                watermarkCount: watermarkCount,
+                detectedWatermarks: Array.from(detectedWatermarks)
+            };
+        }
+
+        // 문자가 이모지 시퀀스의 일부인지 확인
+        function isPartOfEmojiSequence(char, text, position) {
+            // 현재 문자가 이모지 결합자나 변형 선택자인 경우
+            const code = char.codePointAt(0);
+            if (code === 0x200D || code === 0xFE0F) {
+                // 앞뒤 문자 중 하나라도 이모지면 이모지 시퀀스의 일부로 간주
+                if (position > 0 && isEmoji(text[position-1])) {
+                    return true;
+                }
+                if (position < text.length - 1 && isEmoji(text[position+1])) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // 유니코드 설명 가져오기
+        function getUnicodeDescription(code) {
+            // 알려진 유니코드 설명
+            const descriptions = {
+                // 알려진 워터마크
+                0x202F: "좁은 비분리 공백 (NNBSP)",
+                0x200B: "폭이 없는 공백 (ZWSP)",
+                0x200C: "폭이 없는 비결합자 (ZWNJ)",
+                0x200D: "폭이 없는 결합자 (ZWJ)",
+                0x2060: "단어 결합자 (WJ)",
+                0xFEFF: "바이트 순서 표시 (BOM)",
+                0x00AD: "부드러운 하이픈 (SHY)",
+                0x180E: "몽골어 모음 구분자 (MVS)",
+
+                // 일반적인 서식 문자
+                0x000A: "라인 피드 (LF, \\n)",
+                0x000D: "캐리지 리턴 (CR, \\r)",
+                0x0009: "탭 (Tab, \\t)",
+
+                // 공백 문자
+                0x0020: "일반 공백 (SP)",
+                0x00A0: "줄바꿈 없는 공백 (NBSP)",
+                0x2000: "전각 공백 (NQSP)",
+                0x2001: "전각 공백 (MQSP)",
+                0x2002: "전각 공백 (ENSP)",
+                0x2003: "전각 공백 (EMSP)",
+                0x2004: "삼분 간격 (3/EMSP)",
+                0x2005: "사분 간격 (4/EMSP)",
+                0x2006: "육분 간격 (6/EMSP)",
+                0x2007: "숫자 공백 (NUMSP)",
+                0x2008: "구두점 공백 (PUNCSP)",
+                0x2009: "얇은 공백 (THSP)",
+                0x200A: "헤어 스페이스 (HSP)",
+                0x205F: "중간 수학 공백 (MMSP)",
+
+                // 이모지 관련
+                0xFE0F: "변형 선택자 16 (VS16) - 이모지 스타일"
+            };
+
+            // 이모지 범위에 대한 일반 설명
+            if (isEmojiCodePoint(code)) {
+                return "이모지 문자";
+            }
+
+            return descriptions[code] || "알 수 없는 특수 문자";
+        }
+
+        // 코드포인트가 이모지 범위에 속하는지 확인
+        function isEmojiCodePoint(code) {
+            return (
+                (code >= 0x1F600 && code <= 0x1F64F) || // 이모티콘
+                (code >= 0x1F300 && code <= 0x1F5FF) || // 기타 기호 및 픽토그램
+                (code >= 0x1F680 && code <= 0x1F6FF) || // 교통 및 지도 기호
+                (code >= 0x1F700 && code <= 0x1F77F) || // 연금술 기호
+                (code >= 0x1F780 && code <= 0x1F7FF) || // 기하학적 모양
+                (code >= 0x1F800 && code <= 0x1F8FF) || // 추가 화살표
+                (code >= 0x1F900 && code <= 0x1F9FF) || // 추가 이모지
+                (code >= 0x1FA00 && code <= 0x1FA6F) || // 체스 기호
+                (code >= 0x1FA70 && code <= 0x1FAFF) || // 기타 기호
+                (code >= 0x2600 && code <= 0x26FF) || // 기타 기호
+                (code >= 0x2700 && code <= 0x27BF) || // 장식용 문자
+                (code >= 0x1F1E6 && code <= 0x1F1FF)  // 국기 이모지
+            );
+        }
+
+        // HTML 문자 이스케이프
+        function escapeHTML(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // 워터마크 감지 및 표시 이벤트 (버튼 클릭)
+        checkBtn.addEventListener('click', function() {
+            const text = inputText.value;
+            if(!text) {
+                alert('텍스트를 입력해주세요.');
+                return;
+            }
+
+            detectWatermarks();
+        });
+
+        // 텍스트 복사
+        copyBtn.addEventListener('click', function() {
+            const textToCopy = copyBtn.getAttribute('data-clipboard');
+            if(!textToCopy) {
+                alert('먼저 워터마크를 확인해주세요.');
+                return;
+            }
+
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => {
+                    alert('워터마크가 제거된 텍스트가 클립보드에 복사되었습니다.');
+                })
+                .catch(err => {
+                    console.error('복사 실패:', err);
+                    alert('복사에 실패했습니다. 수동으로 선택하여 복사해주세요.');
+                });
+        });
+
+        // 모두 지우기
+        clearBtn.addEventListener('click', function() {
+            inputText.value = '';
+            outputDisplay.innerHTML = '워터마크가 표시될 부분입니다. \'워터마크 확인\' 버튼을 클릭하세요.';
+            stats.innerHTML = '워터마크 없음';
+            watermarksList.innerHTML = '';
+            copyBtn.removeAttribute('data-clipboard');
+            previousInputValue = '';
+        });
+
+        // 키보드 단축키
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+Enter: 워터마크 확인
+            if (e.ctrlKey && e.key === 'Enter') {
+                if (document.activeElement === inputText && inputText.value.trim() !== '') {
+                    e.preventDefault();
+                    checkBtn.click();
+                }
+            }
+
+            // 현재 포커스가 텍스트 입력란이 아닐 때만 단축키 처리
+            if (document.activeElement !== inputText) {
+                // C: 복사
+                if (e.key === 'c' || e.key === 'C') {
+                    if (copyBtn.hasAttribute('data-clipboard')) {
+                        e.preventDefault();
+                        copyBtn.click();
+                    }
+                }
+
+                // D: 자동 검출 모드 토글
+                if (e.key === 'd' || e.key === 'D') {
+                    e.preventDefault();
+                    autoDetectToggle.checked = !autoDetectToggle.checked;
+                    autoDetectToggle.dispatchEvent(new Event('change'));
+                }
+            }
+        });
+
+        // 초기 입력 값이 있다면 자동 검출 모드가 켜져 있을 때 자동 분석
+        if (autoDetectToggle.checked && inputText.value.trim() !== '') {
+            detectWatermarks();
+        }
+    </script>
+</body>
+</html>

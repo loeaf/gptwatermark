@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPTウォーターマーク除去 - ChatGPTテキストのウォーターマーク検出と除去</title>
+
+    <!-- SEOメタタグ -->
+    <meta name="description" content="GPTモデルで生成されたテキストに含まれるウォーターマーク（特殊文字、隠し空白）を検出して除去する無料ツールです。">
+    <meta name="keywords" content="GPT, ChatGPT, GPT-4, ウォーターマーク, ウォーターマーク除去, テキスト浄化, 特殊文字除去, AIテキスト">
+    <meta name="author" content="GPTウォーターマーク除去">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gpt-watermark-remover.example.com/ja/">
+    <meta property="og:title" content="GPTウォーターマーク除去 - AIテキストの隠しマーカーを除去">
+    <meta property="og:description" content="ChatGPTやGPT-4モデルが生成したテキストに挿入された隠しウォーターマークを検出して除去します">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://gpt-watermark-remover.example.com/ja/">
+    <meta property="twitter:title" content="GPTウォーターマーク除去 - AIテキストの隠しマーカーを除去">
+    <meta property="twitter:description" content="ChatGPTやGPT-4モデルが生成したテキストに挿入された隠しウォーターマークを検出して除去します">
+
+    <!-- 正規タグ -->
+    <link rel="canonical" href="https://gpt-watermark-remover.example.com/ja/">
+
+    <!-- 言語選択リンク -->
+    <link rel="alternate" hreflang="ko" href="https://gpt-watermark-remover.example.com/ko/">
+    <link rel="alternate" hreflang="en" href="https://gpt-watermark-remover.example.com/en/">
+    <link rel="alternate" hreflang="ja" href="https://gpt-watermark-remover.example.com/ja/">
+    <link rel="alternate" hreflang="x-default" href="https://gpt-watermark-remover.example.com/">
+
+    <!-- RSSリンク -->
+    <link rel="alternate" type="application/rss+xml" title="GPTウォーターマーク除去の更新情報" href="/rss.xml">
+
+    <!-- ファビコン -->
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+
+    <!-- Google Fonts: 日本語サポートフォント -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 基本スタイルシート -->
+    <style>
+        :root {
+            --primary-color: #4285f4;
+            --secondary-color: #34a853;
+            --accent-color: #fbbc05;
+            --warning-color: #ea4335;
+            --background-color: #f8f9fa;
+            --card-color: #ffffff;
+            --text-color: #202124;
+            --text-secondary: #5f6368;
+            --border-color: #dadce0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--card-color);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 15px;
+        }
+
+        .language-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 5px;
+        }
+
+        .language-link.active {
+            color: var(--primary-color);
+            font-weight: bold;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .app-container {
+                flex-direction: row;
+            }
+        }
+
+        .input-section, .output-section {
+            flex: 1;
+            background-color: var(--card-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .input-textarea {
+            width: 100%;
+            min-height: 250px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1rem;
+            font-size: 1rem;
+            resize: vertical;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .output-title {
+            margin-bottom: 1rem;
+        }
+
+        .output-display {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1rem;
+            min-height: 150px;
+            margin-bottom: 1rem;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: monospace;
+            flex-grow: 1;
+        }
+
+        .highlight {
+            background-color: var(--accent-color);
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--card-color);
+            color: var(--text-secondary);
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .info-box {
+            background-color: rgba(66, 133, 244, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .watermarked {
+            color: var(--text-color);
+            background-color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>GPTウォーターマーク除去</h1>
+            <div class="language-selector">
+                <a href="/ko/" class="language-link">한국어</a>
+                <a href="/en/" class="language-link">English</a>
+                <a href="/ja/" class="language-link active">日本語</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="title">GPTウォーターマーク除去</h1>
+        <p class="subtitle">OpenAIのGPTモデル（GPT-4o、GPT-4o-mini）で生成されたテキストに含まれるウォーターマークを検出して削除します。</p>
+
+        <div class="info-box">
+            <p>📝 GPTは生成したテキストに「狭い改行なし空白（U+202F）」などの特殊なUnicode文字をウォーターマークとして挿入します。このツールはこれらのウォーターマークを検出し、表示した後に削除します。</p>
+        </div>
+
+        <div class="app-container">
+            <div class="input-section">
+                <h2 class="section-title">1. テキスト入力</h2>
+                <textarea id="inputText" class="input-textarea" placeholder="ここにGPTで生成されたテキストを貼り付けてください..."></textarea>
+                <div class="buttons">
+                    <button id="clearBtn" class="btn btn-secondary">すべて消去</button>
+                    <button id="checkBtn" class="btn btn-primary">ウォーターマークを確認</button>
+                </div>
+            </div>
+
+            <div class="output-section">
+                <h2 class="section-title">2. ウォーターマーク検出結果</h2>
+                <div id="outputDisplay" class="output-display">ウォーターマークはここに表示されます。「ウォーターマークを確認」ボタンをクリックしてください。</div>
+                <div class="buttons">
+                    <button id="copyBtn" class="btn btn-primary">コピー</button>
+                </div>
+
+                <div>
+                    <h3 class="output-title">検出されたウォーターマーク:</h3>
+                    <div id="stats">ウォーターマークなし</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 GPTウォーターマーク除去. 全著作権所有.</p>
+        <p>このサービスはテキスト内の隠れたウォーターマークを検出し、削除するための教育目的で提供されています。</p>
+    </footer>
+
+    <script>
+        // DOM要素
+        const inputText = document.getElementById('inputText');
+        const outputDisplay = document.getElementById('outputDisplay');
+        const checkBtn = document.getElementById('checkBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const stats = document.getElementById('stats');
+
+        // GPTウォーターマークとして知られる特殊文字
+        const WATERMARK_CHARS = [
+            '\u202F', // 狭い改行なし空白(NNBSP)
+            '\u200B', // 幅のない空白(ZWSP)
+            '\u200C', // 幅のない非接合子(ZWNJ)
+            '\u200D', // 幅のない接合子(ZWJ)
+            '\u2060'  // 単語結合子(WJ)
+        ];
+
+        // ウォーターマークの検出と表示
+        checkBtn.addEventListener('click', function() {
+            const text = inputText.value;
+            if(!text) {
+                alert('テキストを入力してください。');
+                return;
+            }
+
+            let highlightedText = '';
+            let cleanText = '';
+            let watermarkCount = 0;
+            let detected = false;
+
+            for(let i = 0; i < text.length; i++) {
+                const char = text[i];
+                const isWatermark = WATERMARK_CHARS.includes(char);
+
+                if(isWatermark) {
+                    // ウォーターマーク文字をハイライト
+                    highlightedText += `<span class="watermarked">□</span>`;
+                    watermarkCount++;
+                    detected = true;
+                } else {
+                    // 通常の文字
+                    highlightedText += escapeHTML(char);
+                }
+
+                // ウォーターマークではない文字のみをきれいなテキストに追加
+                if(!isWatermark) {
+                    cleanText += char;
+                }
+            }
+
+            // 結果を表示
+            outputDisplay.innerHTML = highlightedText;
+
+            // ウォーターマーク統計を表示
+            if(detected) {
+                stats.innerHTML = `検出：${watermarkCount}個のウォーターマーク文字が検出されました。`;
+            } else {
+                stats.innerHTML = 'ウォーターマークは検出されませんでした。';
+            }
+
+            // コピーボタンにきれいなテキストを保存
+            copyBtn.setAttribute('data-clipboard', cleanText);
+        });
+
+        // テキストのコピー
+        copyBtn.addEventListener('click', function() {
+            const textToCopy = copyBtn.getAttribute('data-clipboard');
+            if(!textToCopy) {
+                alert('最初にウォーターマークを確認してください。');
+                return;
+            }
+
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => {
+                    alert('ウォーターマークが削除されたテキストがクリップボードにコピーされました。');
+                })
+                .catch(err => {
+                    console.error('コピー失敗:', err);
+                    alert('コピーに失敗しました。手動で選択してコピーしてください。');
+                });
+        });
+
+        // すべて消去
+        clearBtn.addEventListener('click', function() {
+            inputText.value = '';
+            outputDisplay.innerHTML = 'ウォーターマークはここに表示されます。「ウォーターマークを確認」ボタンをクリックしてください。';
+            stats.innerHTML = 'ウォーターマークなし';
+            copyBtn.removeAttribute('data-clipboard');
+        });
+
+        // HTML文字のエスケープ
+        function escapeHTML(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>

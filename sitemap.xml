@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://gpt-watermark-remover.example.com/ko/</loc>
+    <lastmod>2025-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gpt-watermark-remover.example.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gpt-watermark-remover.example.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gpt-watermark-remover.example.com/ja/"/>
+  </url>
+  <url>
+    <loc>https://gpt-watermark-remover.example.com/en/</loc>
+    <lastmod>2025-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gpt-watermark-remover.example.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gpt-watermark-remover.example.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gpt-watermark-remover.example.com/ja/"/>
+  </url>
+  <url>
+    <loc>https://gpt-watermark-remover.example.com/ja/</loc>
+    <lastmod>2025-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gpt-watermark-remover.example.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gpt-watermark-remover.example.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gpt-watermark-remover.example.com/ja/"/>
+  </url>
+</urlset>
